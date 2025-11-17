@@ -19,7 +19,7 @@ function Write-WarningMsg($msg) {
 
 function Write-ErrorMsg($msg) {
     Write-Host $msg -ForegroundColor Red
-}
+} 
 
 # تثبيت Chocolatey إذا مش موجودة
 if (-not (CommandExists "choco")) {
