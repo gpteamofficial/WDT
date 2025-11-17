@@ -1,120 +1,241 @@
-/* General background and font */
+/* ============ الأساسيات ============ */
+
+/* خلفية عامة وخط افتراضي */
 QWidget {
-    background-color: #121212;
-    color: #e0e0e0;
+    background-color: #101218;
+    color: #e4e4e4;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 11pt;
+    font-size: 10.5pt;
 }
 
-/* QLabel - Titles and headers */
+/* تعطيل الـ focus المستطيل الأزرق الافتراضي */
+*:focus {
+    outline: 0;
+}
+
+/* ============ العناوين والنصوص ============ */
+
+/* العناوين العامة */
 QLabel {
-    color: #00aaff;
-    font-weight: bold;
+    color: #e8e8e8;
 }
 
-/* QPushButton base style */
+/* العنوان الرئيسي (لو حطيت له objectName = "titleLabel") */
+QLabel#titleLabel {
+    color: #00b0ff;
+    font-size: 18pt;
+    font-weight: 700;
+}
+
+/* عناوين الأقسام (زي: Installation Log / Planned Installations) */
+QLabel.sectionTitle {
+    /* ممكن تستخدم setProperty("class", "sectionTitle") من بايثون */
+    color: #f5f5f5;
+    font-size: 11pt;
+    font-weight: 600;
+}
+
+/* نصوص ثانوية / وصف */
+QLabel[hint="true"] {
+    color: #9ea0a6;
+    font-size: 9.5pt;
+}
+
+/* ============ الأزرار ============ */
+
+/* زرار أساسي (Start Installation) */
 QPushButton {
     background-color: #007acc;
-    color: white;
+    color: #ffffff;
     border-radius: 14px;
-    padding: 10px 20px;
-    border: none;
-    font-size: 13pt;
+    padding: 9px 22px;
+    border: 1px solid #0060a3;
+    font-size: 11.5pt;
+    font-weight: 500;
 }
 
-/* QPushButton hover and pressed states */
+/* هوفر وضغط */
 QPushButton:hover {
-    background-color: #005f9e;
+    background-color: #0a84d8;
+    border-color: #0a84d8;
 }
 
 QPushButton:pressed {
-    background-color: #003f6b;
+    background-color: #00518a;
+    border-color: #00416e;
 }
 
+/* زر Disabled */
 QPushButton:disabled {
-    background-color: #444444;
-    color: #888888;
+    background-color: #3a3a3a;
+    border-color: #2b2b2b;
+    color: #8c8c8c;
 }
 
-/* QTextEdit - log output */
-QTextEdit {
-    background-color: #1e1e1e;
-    border-radius: 10px;
-    padding: 10px;
-    font-family: Consolas, monospace;
-    font-size: 11pt;
+/* أزرار ثانوية (Clear / Reload) لو استخدمت property type="secondary" في البايثون */
+QPushButton[type="secondary"] {
+    background-color: #2e2f36;
+    border-radius: 12px;
+    border: 1px solid #3c3d45;
     color: #e0e0e0;
-    selection-background-color: #005f9e;
+    font-weight: 400;
+}
+
+QPushButton[type="secondary"]:hover {
+    background-color: #3a3b44;
+}
+
+QPushButton[type="secondary"]:pressed {
+    background-color: #272831;
+}
+
+/* ============ QTextEdit (اللوج / الخطة) ============ */
+
+QTextEdit {
+    background-color: #181a20;
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-family: Consolas, "Cascadia Code", monospace;
+    font-size: 10.5pt;
+    color: #e0e0e0;
+    border: 1px solid #262933;
+    selection-background-color: #0a84d8;
     selection-color: #ffffff;
 }
 
-/* Scrollbars */
-QScrollBar:vertical {
-    background: #2a2a2a;
-    width: 12px;
-    margin: 0px 0px 0px 0px;
-    border-radius: 6px;
+/* لما يكون الـ QTextEdit Disabled */
+QTextEdit:disabled {
+    background-color: #171717;
+    border-color: #2b2b2b;
+    color: #777777;
 }
 
-QScrollBar::handle:vertical {
-    background: #007acc;
-    min-height: 20px;
-    border-radius: 6px;
+/* ============ QLineEdit (لو استخدمته) ============ */
+
+QLineEdit {
+    background-color: #181a20;
+    border: 1px solid #30333f;
+    border-radius: 8px;
+    padding: 6px 10px;
+    color: #e3e3e3;
+    selection-background-color: #0a84d8;
+    selection-color: #ffffff;
 }
 
-QScrollBar::handle:vertical:hover {
-    background: #005f9e;
+QLineEdit:focus {
+    border-color: #00b0ff;
+    background-color: #1c1f26;
 }
 
-QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
-    height: 0;
+/* Placeholder */
+QLineEdit[echoMode="0"]::placeholder {
+    color: #777b85;
 }
 
-/* Tooltips */
-QToolTip {
-    color: #ffffff;
-    background-color: #007acc;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 10pt;
-}
+/* ============ CheckBox ============ */
 
-/* QGraphicsDropShadowEffect workaround */
-/* Note: Shadows are applied programmatically, not in QSS */
-
-/* QHBoxLayout spacing workaround */
-/* لا تأثير مباشر في QSS */
-
-/* Checkbox (لو عندك) */
 QCheckBox {
     color: #e0e0e0;
+    spacing: 6px;
 }
 
 QCheckBox::indicator {
     width: 18px;
     height: 18px;
+    border-radius: 4px;
+    border: 1px solid #3a3d47;
+    background-color: #252832;
+}
+
+QCheckBox::indicator:hover {
+    border-color: #00b0ff;
 }
 
 QCheckBox::indicator:checked {
     background-color: #007acc;
-    border-radius: 4px;
-}
-
-QCheckBox::indicator:unchecked {
-    background-color: #444444;
-    border-radius: 4px;
-}
-
-/* QLineEdit (لو عندك) */
-QLineEdit {
-    background-color: #1e1e1e;
-    border: 1px solid #444444;
-    border-radius: 8px;
-    padding: 6px 10px;
-    color: #e0e0e0;
-}
-
-QLineEdit:focus {
     border-color: #007acc;
+}
+
+QCheckBox::indicator:checked:hover {
+    background-color: #0a84d8;
+}
+
+/* ============ Scrollbars ============ */
+
+QScrollBar:vertical {
+    background: #14161b;
+    width: 12px;
+    margin: 2px 2px 2px 2px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical {
+    background: #3a3f4c;
+    min-height: 24px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #4c5465;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0;
+    width: 0;
+    background: none;
+}
+
+/* أفقية لو احتجتها */
+QScrollBar:horizontal {
+    background: #14161b;
+    height: 12px;
+    margin: 2px 2px 2px 2px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal {
+    background: #3a3f4c;
+    min-width: 24px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: #4c5465;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    height: 0;
+    width: 0;
+    background: none;
+}
+
+/* ============ ToolTips ============ */
+
+QToolTip {
+    color: #ffffff;
+    background-color: #1f2933;
+    border: 1px solid #00b0ff;
+    padding: 5px 7px;
+    border-radius: 5px;
+    font-size: 9.5pt;
+}
+
+/* ============ QGroupBox / Frames (لو استخدمت) ============ */
+
+QGroupBox {
+    border: 1px solid #262933;
+    border-radius: 8px;
+    margin-top: 18px;
+    padding: 10px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 12px;
+    padding: 0 4px;
+    color: #00b0ff;
+    font-weight: 600;
+    background-color: transparent;
 }
